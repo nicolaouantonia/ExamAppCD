@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Define variable in task.
+      shell: cat filename.txt
+      register : BUILD_LATEST
+    - debug:
+        var: BUILD_LATEST.stdout_lines[0]
+    - file:
+       path: /home/train/Downloads/apache-tomcat-9.0.30/webapps/ExamApp
+       state: absent
+      name: "remove existing extracted war"
+    - get_url:
+       dest: /home/train/Downloads/apache-tomcat-9.0.30/webapps/ExamApp.war
+       force: true
+       url: "{{ BUILD_LATEST.stdout_lines[0]}}"
+    - name: Copy the build to the docker staging server (container id) DOCKER_CONT_ID
+      shell: "docker cp /home/train/Downloads/apache-tomcat-9.0.30/webapps/ExamApp.war tomcat1:/usr/local/tomcat/webapps"
+    - name: Copy the build to the docker staging server (container id) DOCKER_CONT_ID
+      shell: "docker cp /home/train/Downloads/apache-tomcat-9.0.30/webapps/ExamApp.war tomcat2:/usr/local/tomcat/webapps"
