@@ -11,7 +11,7 @@ version=`curl -s $url/maven-metadata.xml | grep latest | sed "s/.*<latest>\([^<]
 
 build=`curl -s $url/$version/maven-metadata.xml | grep '<value>' |head -1 | sed "s/.*<value>\([^<]*\)<\/value>.*/\1/"`
 
-BUILD_LATEST="$url/$version/ExamApp-$build.war"
+BUILD_LATEST="$url/$version/CPDOFSEPFOUR-$build.war"
 echo "File Name  = " +$BUILD_LATEST
 
 echo $BUILD_LATEST > filename.txt
