@@ -1,7 +1,7 @@
 artifactory_url="http://localhost:8081/artifactory"
 
 repo="libs-snapshot-local"
-artifacts="agiletestingalliance/cpdofsep/CPDOFSEPFOUR"           
+artifacts="com/agiletestingalliance/cpdofsep/CPDOFSEPFOUR"           
 
 url=$artifactory_url/$repo/$artifacts
 
